@@ -46,6 +46,17 @@
     _progressView.progressTintColor = [UIColor grayColor];
     [self.progressView setTransform:CGAffineTransformMakeScale(1.0, 3.0)];
     [self addSubview:_progressView];
+    
+    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self setAutoresizesSubviews:YES];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (CGRectContainsPoint(self.webView.frame,point)) {
+        [self.panelView resignFirstResponder];
+    }
+    return [super hitTest:point withEvent:event];
 }
 
 @end

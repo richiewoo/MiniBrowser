@@ -15,18 +15,16 @@ typedef enum _NavigationDir
 } eNavigationDir;
 
 @protocol ControlPanelViewDelegate <NSObject>
-
 @optional
 - (void) navigation:(eNavigationDir)dir;
 - (void) gotoAddress:(NSString *) address;
-
 @end
 
-#define CONTROL_PANEL_VIEW_HEIGHT 70
+#define CONTROL_PANEL_VIEW_HEIGHT 80
 @interface ControlPanelView : UIView
-
 @property (nonatomic, weak) id<ControlPanelViewDelegate> delegate;
 
 - (void) setNavigationEnable:(eNavigationDir) dir enable:(BOOL) st;
-
+- (void) setAdrress:(NSString *)address title:(NSString *)title;
+- (void) resignFirstResponder;
 @end

@@ -11,6 +11,7 @@
 
 typedef void (^UpdateProgressBlock) (float progress);
 typedef void (^CanNavigateBlock) (NSString* navigateDir, BOOL canNav);
+typedef void (^ReturnAddressAndTitleBlock) (NSString* address, NSString* title);
 
 @interface BrowserController : NSObject 
 
@@ -22,5 +23,6 @@ typedef void (^CanNavigateBlock) (NSString* navigateDir, BOOL canNav);
 
 - (void) setUpdateProgressBlock:(UpdateProgressBlock) block;
 - (void) setCanNavigateBlock: (CanNavigateBlock) block;
+- (void) setReturnAddrTitleBlock: (ReturnAddressAndTitleBlock) block;
 
 @end

@@ -28,12 +28,12 @@
     [self.view addSubview:_browserView];
     self.browserView.panelView.delegate = self;
     [self initBrowserController];
+    [self.browserCtl loadWebAddress:@"www.tango.me/"];
 }
 
 - (void)initBrowserController
 {
     _browserCtl = [[BrowserController alloc] initWithWebview:_browserView.webView];
-    
     __weak __typeof(self)weakSelf = self;
     [self.browserCtl setUpdateProgressBlock: ^(float prgress){
         [weakSelf.browserView.progressView setProgress:prgress animated:YES];
@@ -41,7 +41,6 @@
             weakSelf.browserView.progressView.progress = 0;
         }
     }];
-    
     [self.browserCtl setCanNavigateBlock: ^(NSString* navigateDir, BOOL canNav){
         if ([navigateDir isEqualToString:@"canGoBack"]){
             [weakSelf.browserView.panelView setNavigationEnable:Navigation_Back enable:canNav];
@@ -49,21 +48,22 @@
             [weakSelf.browserView.panelView setNavigationEnable:Navigation_Forward enable:canNav];
         }
     }];
+    [self.browserCtl setReturnAddrTitleBlock:^(NSString* address, NSString* title){
+        [weakSelf.browserView.panelView setAdrress:address title:title];
+    }];
 }
 
 #pragma mark - ControlPanelViewDelegate
-- (void) navigation:(eNavigationDir)dir
+- (void)navigation:(eNavigationDir)dir
 {
     if (Navigation_Back == dir) {
         [self.browserCtl gobackwordPage];
-    }
-    
-    if (Navigation_Forward == dir) {
+    } else if (Navigation_Forward == dir) {
         [self.browserCtl goForwordPage];
     }
 }
 
-- (void) gotoAddress:(NSString *) address
+- (void)gotoAddress:(NSString *) address
 {
     [self.browserCtl loadWebAddress:address];
 }

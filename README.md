@@ -8,6 +8,6 @@ Open the project file MiniBrowser.xcodeproj on XCode and run on simulator or dev
 
 3)The browser has a back and forward button to navigate backward or forward.
 
-Run iOS8 and above because of using WKWebView.
+Run on iOS8 and above because of using WKWebView.
 
 

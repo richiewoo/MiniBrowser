@@ -19,7 +19,6 @@
 
 @property (nonatomic, strong) UIButton* backBtn;
 @property (nonatomic, strong) UIButton* forwardBtn;
-@property (nonatomic, strong) UIButton* addressBtn;
 @property (nonatomic, strong) UITextView* addressInput;
 @property (nonatomic, strong) UILabel* addressName;
 @property (nonatomic, strong) NSString* address;
@@ -159,7 +158,7 @@
         if( [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]].location == NSNotFound ) {
             return YES;
         }
-        [textView resignFirstResponder];
+        [self resignFirstResponder];
         
         self.address = textView.text;
         if (self.delegate && [self.delegate respondsToSelector:@selector(gotoAddress:)]) {
